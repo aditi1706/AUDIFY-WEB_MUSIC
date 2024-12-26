@@ -1,4 +1,5 @@
-console.log("Welcome to Spotify");
+console.log("Welcome to Audify");
+
 
 // Initialize the Variables
 let songIndex = 0;
@@ -13,7 +14,7 @@ let songs = [
     {songName: "Kabhi Kabhi Aditi Zindagi -Rashid Ali", filePath: "songs/1.mp3", coverPath: "covers/1.jpg"},
     {songName: "Zaroor -Aparshakti Khurana, Savi Kahlon", filePath: "songs/2.mp3", coverPath: "covers/2.jpg"},
     {songName: "Prem Ki Naiyya -Neeraj Shridhar, Pritam Chakraborty", filePath: "songs/3.mp3", coverPath: "covers/3.jpg"},
-    {songName: "Oh Ho Ho Ho -Oh Ho Ho Ho", filePath: "songs/4.mp3", coverPath: "covers/4.jpg"},
+    {songName: "Oh Ho Ho Ho - Irfan khan", filePath: "songs/4.mp3", coverPath: "covers/4.jpg"},
     {songName: "Dhoom tanana-Shreya Ghoshal, Abhijeet Bhattacharya", filePath: "songs/5.mp3", coverPath: "covers/5.jpg"},
     {songName: "Hoshwalo ko khabar kaya -Jagjit Singh", filePath: "songs/2.mp3", coverPath: "covers/6.jpg"},
     {songName: "Sajde -Nihira Joshi, Gulzar, Arijit Singh", filePath: "songs/2.mp3", coverPath: "covers/7.jpg"},
@@ -43,6 +44,24 @@ masterPlay.addEventListener('click', ()=>{
         gif.style.opacity = 0;
     }
 })
+
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space') {
+        event.preventDefault(); // Prevent the default action (scrolling down the page)
+        if (audioElement.paused || audioElement.currentTime <= 0) {
+            audioElement.play();
+            masterPlay.classList.remove('fa-play-circle');
+            masterPlay.classList.add('fa-pause-circle');
+            gif.style.opacity = 1;
+        } else {
+            audioElement.pause();
+            masterPlay.classList.remove('fa-pause-circle');
+            masterPlay.classList.add('fa-play-circle');
+            gif.style.opacity = 0;
+        }
+    }
+});
+
 // Listen to Events
 audioElement.addEventListener('timeupdate', ()=>{ 
     // Update Seekbar
